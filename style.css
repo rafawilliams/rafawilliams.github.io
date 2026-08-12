@@ -422,6 +422,8 @@ p {
     padding: var(--space-md) var(--space-lg);
     max-width: 360px;
     transition: all var(--transition-normal);
+    text-decoration: none;
+    color: inherit;
 }
 
 .cert-card:hover {
