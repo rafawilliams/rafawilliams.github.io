@@ -1,5 +1,7 @@
 # Rediseño del portfolio: "Navy & Gold Premium"
 
+**Estado:** Implementado (índice, hoja de estilos, secciones Experiencia/Habilidades/Certificaciones). Pendiente: reactivar y poblar la sección de Proyectos cuando el usuario lo pida.
+
 ## Contexto
 
 El portfolio en `C:\apps\Portfolio` (publicado en `rafawilliams.github.io`) partió de una plantilla genérica de "Cloud Engineer" con hero animado (partículas, gradientes, formas flotantes). Ya se personalizó el contenido (nombre, contacto, proyectos AWS reales) y se corrigió el hero para reflejar el perfil real de Rafael: **Ingeniero de Software / Payment Systems Specialist en Banistmo**, con 10+ años de experiencia y foco en sistemas de pago (ISO 8583, Mastercard, tokenización, PCI DSS) más infraestructura AWS.
