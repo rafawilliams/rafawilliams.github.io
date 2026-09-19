@@ -26,6 +26,7 @@ let currentFilter = 'all';
 document.addEventListener('DOMContentLoaded', function() {
     initializeDOMElements();
     loadProjects();
+    renderFeaturedProject();
     initializeModal();
     initializeAnimations();
     initializeContactForm();
@@ -88,11 +89,59 @@ function createProjectCard(project) {
                     <i class="fas fa-external-link-alt"></i>
                     Ver Demo
                 </a>
+                ${project.diagram ? `
+                <a href="${project.diagram}" target="_blank" class="project-link secondary" onclick="event.stopPropagation();">
+                    <i class="fas fa-diagram-project"></i>
+                    Diagrama
+                </a>` : ''}
             </div>
         </div>
     `;
     
     return card;
+}
+
+// Render the standalone featured project card (independent of the disabled projects grid)
+function renderFeaturedProject() {
+    const section = document.getElementById('featured-project');
+    if (!section) return;
+
+    const project = projects.find(p => p.featured);
+    if (!project) {
+        section.style.display = 'none';
+        return;
+    }
+
+    document.getElementById('featuredProjectTitle').textContent = project.title;
+    document.getElementById('featuredProjectDescription').textContent = project.description;
+
+    const image = document.getElementById('featuredProjectImage');
+    image.src = project.image;
+    image.alt = project.title;
+
+    document.getElementById('featuredProjectFullDescription').textContent = project.fullDescription;
+
+    document.getElementById('featuredProjectTech').innerHTML = project.technologies
+        .map(tech => `<span class="modal-tech-tag">${tech}</span>`)
+        .join('');
+
+    const links = [
+        { href: project.github, icon: 'fab fa-github', label: 'Ver Código', variant: 'btn-primary' },
+        { href: project.demo, icon: 'fas fa-external-link-alt', label: 'Ver Demo', variant: 'btn-outline' }
+    ];
+    if (project.diagram) {
+        links.push({ href: project.diagram, icon: 'fas fa-diagram-project', label: 'Ver Diagrama', variant: 'btn-outline' });
+    }
+
+    document.getElementById('featuredProjectLinks').innerHTML = links
+        .filter(link => link.href && link.href !== '#')
+        .map(link => `
+            <a href="${link.href}" target="_blank" class="btn ${link.variant}">
+                <i class="${link.icon}"></i>
+                ${link.label}
+            </a>
+        `)
+        .join('');
 }
 
 // Project filter functionality
@@ -151,6 +200,7 @@ function openModal(project) {
     const modalTechnologies = document.getElementById('modalTechnologies');
     const modalGithub = document.getElementById('modalGithub');
     const modalDemo = document.getElementById('modalDemo');
+    const modalDiagram = document.getElementById('modalDiagram');
     
     modalTitle.textContent = project.title;
     modalImage.src = project.image;
@@ -163,7 +213,14 @@ function openModal(project) {
     
     modalGithub.href = project.github;
     modalDemo.href = project.demo;
-    
+
+    if (project.diagram) {
+        modalDiagram.href = project.diagram;
+        modalDiagram.style.display = '';
+    } else {
+        modalDiagram.style.display = 'none';
+    }
+
     // Add click handlers for modal buttons
     modalGithub.onclick = function(e) {
         if (this.href === '#') {

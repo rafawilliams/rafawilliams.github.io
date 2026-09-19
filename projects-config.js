@@ -138,6 +138,19 @@ const projects = [
         tags: ["Profesional"],
         github: "#",
         demo: "#"
+    },
+    {
+        id: 11,
+        title: "Customer Churn Prediction (MLOps)",
+        description: "Modelo de ML end-to-end que predice cancelación de clientes, servido vía API y desplegado en producción en AWS",
+        fullDescription: "Proyecto de Machine Learning end-to-end: análisis exploratorio y limpieza del dataset Telco Customer Churn, entrenamiento y comparación de modelos (Regresión Logística vs Random Forest), selección de Random Forest por su recall de 80.75%, y una API con FastAPI que sirve las predicciones. La API se contenerizó con Docker y se desplegó en producción en AWS (Amazon ECR + ECS Express Mode con Fargate), exponiendo una URL pública verificada con predicciones idénticas en local y en la nube.",
+        image: "imagenes/Churn_Prediction.jpg",
+        technologies: ["Python", "scikit-learn", "Pandas", "FastAPI", "Docker", "Amazon ECR", "Amazon ECS", "AWS Fargate"],
+        tags: ["Profesional"],
+        github: "https://github.com/rafawilliams/prediccion-cancelacion-clientes",
+        demo: "https://ch-3feaaa7b7cb14cf9802bcf6772cb2b1a.ecs.us-east-1.on.aws/docs",
+        diagram: "diagrams/churn-prediction-architecture.html",
+        featured: true
     }
 ];
 
