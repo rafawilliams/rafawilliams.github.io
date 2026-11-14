@@ -101,46 +101,52 @@ function createProjectCard(project) {
     return card;
 }
 
-// Render the standalone featured project card (independent of the disabled projects grid)
+// Render the standalone featured project cards (independent of the disabled projects grid)
 function renderFeaturedProject() {
     const section = document.getElementById('featured-project');
     if (!section) return;
 
-    const project = projects.find(p => p.featured);
-    if (!project) {
+    const featured = projects.filter(p => p.featured);
+    if (featured.length === 0) {
         section.style.display = 'none';
         return;
     }
 
-    document.getElementById('featuredProjectTitle').textContent = project.title;
-    document.getElementById('featuredProjectDescription').textContent = project.description;
+    document.getElementById('featuredProjectsList').innerHTML = featured
+        .map(project => {
+            const links = [
+                { href: project.github, icon: 'fab fa-github', label: 'Ver Código', variant: 'btn-primary' },
+                { href: project.demo, icon: 'fas fa-external-link-alt', label: 'Ver Demo', variant: 'btn-outline' },
+                { href: project.diagram, icon: 'fas fa-diagram-project', label: 'Ver Diagrama', variant: 'btn-outline' }
+            ]
+                .filter(link => link.href && link.href !== '#')
+                .map(link => `
+                    <a href="${link.href}" target="_blank" class="btn ${link.variant}">
+                        <i class="${link.icon}"></i>
+                        ${link.label}
+                    </a>
+                `)
+                .join('');
 
-    const image = document.getElementById('featuredProjectImage');
-    image.src = project.image;
-    image.alt = project.title;
+            const tech = project.technologies
+                .map(t => `<span class="modal-tech-tag">${t}</span>`)
+                .join('');
 
-    document.getElementById('featuredProjectFullDescription').textContent = project.fullDescription;
-
-    document.getElementById('featuredProjectTech').innerHTML = project.technologies
-        .map(tech => `<span class="modal-tech-tag">${tech}</span>`)
-        .join('');
-
-    const links = [
-        { href: project.github, icon: 'fab fa-github', label: 'Ver Código', variant: 'btn-primary' },
-        { href: project.demo, icon: 'fas fa-external-link-alt', label: 'Ver Demo', variant: 'btn-outline' }
-    ];
-    if (project.diagram) {
-        links.push({ href: project.diagram, icon: 'fas fa-diagram-project', label: 'Ver Diagrama', variant: 'btn-outline' });
-    }
-
-    document.getElementById('featuredProjectLinks').innerHTML = links
-        .filter(link => link.href && link.href !== '#')
-        .map(link => `
-            <a href="${link.href}" target="_blank" class="btn ${link.variant}">
-                <i class="${link.icon}"></i>
-                ${link.label}
-            </a>
-        `)
+            return `
+                <article class="featured-project-item">
+                    <h3 class="featured-project-title">${project.title}</h3>
+                    <p class="featured-project-summary">${project.description}</p>
+                    <div class="featured-project-card">
+                        <img src="${project.image}" alt="${project.title}" class="featured-project-image">
+                        <div class="featured-project-info">
+                            <p class="featured-project-full-description">${project.fullDescription}</p>
+                            <div class="featured-project-tech">${tech}</div>
+                            <div class="featured-project-links">${links}</div>
+                        </div>
+                    </div>
+                </article>
+            `;
+        })
         .join('');
 }
 

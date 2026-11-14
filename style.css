@@ -612,6 +612,23 @@ p {
     background: var(--color-white);
 }
 
+.featured-projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+}
+
+.featured-project-title {
+    font-family: var(--font-serif, inherit);
+    color: var(--color-navy);
+    margin-bottom: var(--space-xs);
+}
+
+.featured-project-summary {
+    color: var(--color-text-muted-on-ivory);
+    margin-bottom: var(--space-md);
+}
+
 .featured-project-card {
     display: flex;
     gap: var(--space-2xl);
