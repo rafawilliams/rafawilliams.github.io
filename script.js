@@ -41,7 +41,7 @@ function loadProjects(filter = 'all') {
     console.log('Loading projects...', projects.length, 'projects found');
     
     if (!projectsGrid) {
-        console.error('Projects grid element not found!');
+        // The projects grid is intentionally disabled; featured projects render separately
         return;
     }
     
