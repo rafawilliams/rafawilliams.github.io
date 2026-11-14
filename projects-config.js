@@ -151,6 +151,19 @@ const projects = [
         demo: "https://ch-3feaaa7b7cb14cf9802bcf6772cb2b1a.ecs.us-east-1.on.aws/docs",
         diagram: "diagrams/churn-prediction-architecture.html",
         featured: true
+    },
+    {
+        id: 12,
+        title: "PAYCTRL — Sistema de Gestión de Pagos",
+        description: "Procesamiento de transacciones con tarjetas sobre Oracle, con flujo ISO 8583, scoring de fraude y auditoría completa",
+        fullDescription: "Sistema de procesamiento de transacciones de tarjetas de débito/crédito que simula el flujo de autorización ISO 8583 de Mastercard. La lógica de negocio vive en Oracle XE 21c (PL/SQL): un stored procedure valida la tarjeta, aplica las reglas de negocio y registra cada operación de forma inmutable; un trigger AFTER INSERT calcula un score de riesgo (0–100) con cinco reglas de fraude y bloquea la transacción cuando el score es ≥ 70, generando una alerta para revisión manual. El PAN nunca se almacena en claro (solo hash SHA-256). Una API FastAPI (Python 3.13, python-oracledb) expone transacciones, tarjetas, alertas y reportes, y un frontend React 18 + Vite ofrece el dashboard operativo.",
+        image: "imagenes/Sistema_Pagos_Oracle.jpg",
+        technologies: ["Oracle XE 21c", "PL/SQL", "ISO 8583", "Python", "FastAPI", "React", "Vite", "Docker"],
+        tags: ["Profesional"],
+        github: "https://github.com/rafawilliams/system-pagos-trx",
+        demo: "#",
+        diagram: "diagrams/payments-system-architecture.html",
+        featured: true
     }
 ];
 
