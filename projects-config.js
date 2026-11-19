@@ -164,6 +164,19 @@ const projects = [
         demo: "#",
         diagram: "diagrams/payments-system-architecture.html",
         featured: true
+    },
+    {
+        id: 13,
+        title: "Business Analyst Agent (IA Generativa en AWS)",
+        description: "Aplicación web que convierte el título de una funcionalidad en una historia de usuario con criterios Gherkin, lista para Jira",
+        fullDescription: "Agente de análisis de negocio construido con el flujo AI-DLC: una pantalla React + MUI genera, a partir del título de una funcionalidad, una historia «Como [rol], quiero [acción], para [beneficio]» y de 2 a 3 criterios de aceptación en Gherkin, en español y como Markdown. El servicio es serverless (API Gateway + Lambda en Python) y usa Amazon Bedrock (Claude Sonnet) en us-east-1, sin base de datos: no se guarda nada. El acceso se gestiona con Amazon Cognito (Google y Microsoft) y una lista de correos permitidos que la Lambda verifica con el token en cada solicitud. Toda la infraestructura está en Terraform y se entrega con GitHub Actions (OIDC), con pruebas, cobertura mínima del 80 % y Checkov en CI.",
+        image: "imagenes/Business_Analyst_Agent.jpg",
+        technologies: ["Amazon Bedrock", "AWS Lambda", "API Gateway", "Amazon Cognito", "CloudFront", "Amazon S3", "Terraform", "GitHub Actions", "Python", "React"],
+        tags: ["Profesional"],
+        github: "https://github.com/rafawilliams/agent-create-user-history",
+        demo: "#",
+        diagram: "diagrams/business-analyst-agent-architecture.html",
+        featured: true
     }
 ];
 
